@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+.btn-search {
+  font-size: 8px;
+  margin-left: 5px;
+}
+.modal-header {
+  background-color: #6C757D;
+  color: #fff;
+  padding: 10px;
+}
+.modalSearch {
+  font-size: 12px;
+}
+#productnamelabel {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#productSearchModal td {
+  font-size: small;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}

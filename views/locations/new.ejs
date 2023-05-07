@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+  <h2 class="text-center">ロケーション 新規登録</h2>
+
+  <div class="offset-md-3 col-md-6 mt-4">
+    <form action="/locations" method="POST" class="validated-form" novalidate>
+      <div class="mb-3">
+        <label class="form-label"  for="locationname">ロケーション名</label>
+        <input class="form-control" type="text" name="location[locationname]" id="locationname" required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label"  for="locationdescription">説明</label>
+        <textarea class="form-control" type="text" name="location[description]" id="locationdescription" rows="5"></textarea>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success">登録する</button>
+      </div>
+
+    </form>
+    <a href="/locations">一覧に戻る</a>
+  </div>
+</div>

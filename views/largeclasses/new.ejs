@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+  <h2 class="text-center">大分類 新規登録</h2>
+
+  <div class="offset-md-3 col-md-6 mt-4">
+    <form action="/largeclasses" method="POST" class="validated-form" novalidate>
+      <div class="mb-3">
+        <label class="form-label"  for="largeclassname">大分類名</label>
+        <input class="form-control" type="text" name="largeclass[largeclassname]" id="largeclassname" required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label"  for="largedescription">説明</label>
+        <textarea class="form-control" type="text" name="largeclass[description]" id="largedescription" rows="5"></textarea>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success">登録する</button>
+      </div>
+
+    </form>
+    <a href="/largeclasses">一覧に戻る</a>
+  </div>
+</div>

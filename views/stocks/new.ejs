@@ -1,0 +1,109 @@
+<% layout('layouts/boilerplate') %>
+<style></style>
+<link rel="stylesheet" href="/stylesheets/app_stocks.css">
+
+<div class="row">
+  <h2 class="text-center">在庫 新規登録</h2>
+
+  <div class="offset-md-3 col-md-6 mt-4">
+    <form action="/stocks" method="POST" class="validated-form" novalidate>
+
+      <div class="mb-3">
+        <label class="form-label" for="locationname">ロケーション</label>
+        <select class="form-select" name="stock[locationname]" id="locationname" autofocus>
+            <% for (let location of locations) { %>
+              <option value="<%= location.locationname %>"><%= location.locationname %></option>
+            <% } %>
+        </select>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="productname" class="form-label">商品名</label>
+        <button type="button" class="btn btn-secondary btn-search" data-bs-toggle="modal" data-bs-target="#productSearchModal">検 索</button>
+        <input class="form-control" type="text" name="stock[productname]" id="productname" style="background-color: #fbfbfb;" readonly required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <!-- 大分類名 非表示 -->
+      <div class="mb-3">
+        <input class="form-control" type="hidden" name="stock[largeclassname]" id="largeclassname" value="">
+      </div>
+      <!-- 中分類名 非表示 -->
+      <div class="mb-3">
+        <input class="form-control" type="hidden" name="stock[middleclassname]" id="middleclassname" value="">
+      </div>
+      <!-- 在庫単価 非表示 -->
+      <div class="mb-3">
+        <input class="form-control" type="hidden" name="stock[inventoryunitprice]" id="inventoryunitprice" value="">
+      </div>
+      <!-- 在庫金額 非表示 -->
+      <div class="mb-3">
+        <input class="form-control" type="hidden" name="stock[stockprice]" id="stockprice" value="">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="inventoryquantity">在庫数量</label>
+        <div class="input-group">
+          <span class="input-group-text" id="inventoryunitprice-label">個</span>
+        <input type="text" class="form-control" id="inventoryquantity" placeholder="" aria-label="在庫数量" aria-describedby="inventoryquantity-label" name="stock[inventoryquantity]" value="" required>
+          <div class="valid-feedback">
+            OK!
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <button class="btn btn-success">登録する</button>
+      </div>
+
+    </form>
+    <a href="/stocks">一覧に戻る</a>
+  </div>
+</div>
+
+<!-- 商品検索モーダル -->
+<div class="modal fade" id="productSearchModal" tabindex="-1" aria-labelledby="productSearchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productSearchModalLabel">商品 検索</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="height: 400px;">
+
+        <label for="modalProductname">商品名</label>
+        <input type="text" class="form-control modalSearch" name="modalProductname" id="modalProductname" style="width:400px;">
+
+        <table class="table table-hover" id="productSearchTable">
+          <thead>
+            <th scope="col">商品名</th>
+            <th scope="col">大分類</th>
+            <th scope="col">中分類</th>
+            <th scope="col">在庫単価</th>
+          </thead>
+
+          <% for (let product of products) { %>
+            <tbody>
+              <tr>
+                <td id="td01"><%= product.productname %></td>
+                <td id="td02"><%= product.largeclassname %></td>
+                <td id="td03"><%= product.middleclassname %></td>
+                <td id="td04"><%= product.inventoryunitprice %></td>
+              </tr>
+            </tbody>
+          <% } %>
+
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="/javascripts/app_stocks.js"></script>

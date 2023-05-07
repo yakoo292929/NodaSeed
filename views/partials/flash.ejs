@@ -1,0 +1,25 @@
+<!-- 成功時のフラッシュ -->
+<% if (success && success.length) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert" id="my-alert">
+    <%= success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<!-- エラー時のフラッシュ -->
+<% if (error && error.length) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" id="my-alert">
+    <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // アラートを1.5秒後に非表示にする
+    setTimeout(function() {
+      $("#my-alert").alert("close");
+    }, 1500);
+  });
+</script>

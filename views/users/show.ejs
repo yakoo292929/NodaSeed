@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+  <h2 class="text-center">ユーザー 照会</h2>
+
+  <div class="offset-md-3 col-md-6 mt-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= user.username %></h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">[メールアドレス]　<%= user.email %></li>
+        <li class="list-group-item">
+          <span>[権　限]　　　　　</span>
+          <span><%= user.authority === '00' ? '一般ユーザー' : '' %></span>
+          <span><%= user.authority === '99' ? '管理者' : '' %></span>
+        </li>
+      </ul>
+      <div class="card-footer text-muted">
+        <a href="/users">一覧に戻る</a>
+      </div>
+    </div>
+  </div>
+</div>

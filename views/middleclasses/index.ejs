@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate') %>
+
+  <h2>中分類 一覧</h2>
+  <div class="mt-4">
+    <!-- カレントユーザの権限が管理者の場合のみ新規登録 -->
+    <% if (currentUser.authority === '99') { %>
+      <a href="/middleclasses/new">新規登録</a>
+    <% } %>
+  </div>
+
+  <form  action="/middleclasses/q" method="GET">
+    <div class="d-flex align-items-center mt-2">
+      <label class="form-label me-3" for="q_middleclassname">中分類名</label>
+      <input class="form-control" type="text" name="q_middleclassname" id="q_middleclassname" style="width: 200px;">
+      <button class="btn btn-success ms-4" style="width: 80px;">絞 込</button>
+    </div>
+  </form>
+
+  <table class="table table-bordered mt-3">
+    <thead class="table-primary">
+      <th scope="col" style="width: 80px;"></th>
+      <th scope="col" style="width: 200px;">中分類名</th>
+      <th scope="col">説明</th>
+    </thead>
+
+    <% for (let middleclass of middleclasses) { %>
+      <tbody>
+        <th scope="row">
+          <!-- カレントユーザの権限が管理者の場合は編集画面/それ以外は照会画面 -->
+          <% if (currentUser.authority === '99') { %>
+            <a class="btn btn-primary" href="/middleclasses/<%= middleclass._id %>/edit">詳細</a>
+          <% } else { %>
+            <a class="btn btn-primary" href="/middleclasses/<%= middleclass._id %>/show">詳細</a>
+          <% } %>
+        </th>
+        <td><%= middleclass.middleclassname %></td>
+        <td><%= middleclass.description %></td>
+      </tbody>
+    <% } %>
+  </table>

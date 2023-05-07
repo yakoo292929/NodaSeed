@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate') %>
+
+  <h2>ロケーション一覧</h2>
+  <div class="mt-4">
+    <!-- カレントユーザの権限が管理者の場合のみ新規登録 -->
+    <% if (currentUser.authority === '99') { %>
+      <a href="/locations/new">新規登録</a>
+    <% } %>
+  </div>
+
+  <table class="table table-bordered mt-3">
+    <thead class="table-primary">
+      <th scope="col" style="width: 80px;"></th>
+      <th scope="col" style="width: 150px;">ロケーション</th>
+      <th scope="col">説明</th>
+    </thead>
+
+    <% for (let location of locations) { %>
+      <tbody>
+        <th scope="row">
+          <!-- カレントユーザの権限が管理者の場合は編集画面/それ以外は照会画面 -->
+          <% if (currentUser.authority === '99' || currentUser.username === 'supernoda') { %>
+            <a class="btn btn-primary" href="/locations/<%= location._id %>/edit">詳細</a>
+          <% } else { %>
+            <a class="btn btn-primary" href="/locations/<%= location._id %>/show">詳細</a>
+          <% } %>
+        </th>
+        <td><%= location.locationname %></td>
+        <td><%= location.description %></td>
+      </tbody>
+    <% } %>
+
+  </table>

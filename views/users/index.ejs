@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate') %>
+
+  <h2>ユーザー一覧</h2>
+
+  <table class="table table-bordered mt-3">
+    <thead class="table-primary">
+      <th scope="col" style="width: 80px;"></th>
+      <th scope="col" style="width: 180px;">ユーザー名</th>
+      <th scope="col">email</th>
+    </thead>
+
+    <% for (let user of users) { %>
+      <tbody>
+        <th scope="row">
+          <!-- カレントユーザの権限が管理者の場合は編集画面/それ以外は照会画面 -->
+          <% if (currentUser.authority === '99') { %>
+            <a class="btn btn-primary" href="/users/<%= user._id %>/edit">詳細</a>
+          <% } else { %>
+            <a class="btn btn-primary" href="/users/<%= user._id %>/show">詳細</a>
+          <% } %>
+        </th>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+      </tbody>
+    <% } %>
+  </table>

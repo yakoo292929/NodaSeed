@@ -1,0 +1,38 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+  <h2 class="text-center">大分類 編集</h2>
+
+  <div class="offset-md-3 col-md-6 mt-4">
+    <form action="/largeclasses/<%= largeclass._id %>?_method=PUT" method="POST" class="validated-form" novalidate>
+      <div class="mb-3">
+        <label class="form-label"  for="largeclassname">大分類名</label>
+        <input class="form-control" type="text" name="largeclass[largeclassname]" id="largeclassname" value="<%= largeclass.largeclassname %>" required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label"  for="largedescription">説明</label>
+        <textarea class="form-control" type="text" name="largeclass[description]" id="largedescription" rows="5"><%= largeclass.description %></textarea>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="mb-3">
+          <button class="btn btn-success">更新する</button>
+        </div>
+    </form>
+
+        <form class="d-inline" action="/largeclasses/delete/<%= largeclass._id %>?_method=DELETE" method="POST">
+          <button class="btn btn-danger ms-2">削除する</button>
+        </form>
+      </div>
+
+    <div>
+      <a href="/largeclasses">一覧に戻る</a>
+    </div>
+
+  </div>
+</div>

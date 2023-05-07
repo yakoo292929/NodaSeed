@@ -1,0 +1,42 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+  <h2 class="text-center">中分類 新規登録</h2>
+
+  <div class="offset-md-3 col-md-6 mt-4">
+    <form action="/middleclasses" method="POST" class="validated-form" novalidate>
+
+      <div class="mb-3">
+        <label class="form-label" for="largeclassname">大分類</label>
+        <select class="form-select" name="middleclass[largeclassname]" id="largeclassname">
+            <% for (let largeclass of largeclasses) { %>
+              <option value="<%= largeclass.largeclassname %>"><%= largeclass.largeclassname %></option>
+            <% } %>
+        </select>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label"  for="middleclassname">中分類名</label>
+        <input class="form-control" type="text" name="middleclass[middleclassname]" id="middleclassname" required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label"  for="middledescription">説明</label>
+        <textarea class="form-control" type="text" name="middleclass[description]" id="middledescription" rows="5"></textarea>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success">登録する</button>
+      </div>
+
+    </form>
+    <a href="/middleclasses">一覧に戻る</a>
+  </div>
+</div>
+

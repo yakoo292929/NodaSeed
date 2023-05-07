@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+  <h2 class="text-center">在庫 照会</h2>
+
+  <div class="offset-md-3 col-md-6 mt-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">商品名：<%= stock.productname %></h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">[大分類]　　　<%= stock.largeclassname %></li>
+        <li class="list-group-item">[中分類]　　　<%= stock.middleclassname %></li>
+        <li class="list-group-item">[在庫単価]　　<%= stock.inventoryunitprice %></li>
+        <li class="list-group-item">[在庫数量]　　<%= stock.inventoryquantity %></li>
+        <li class="list-group-item">[登録者]　　　<%= stock.author.username %></li>
+      </ul>
+      <div class="card-footer text-muted">
+        <a href="/stocks">一覧に戻る</a>
+      </div>
+    </div>
+  </div>
+</div>

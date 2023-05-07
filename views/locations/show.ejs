@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+  <h2 class="text-center">ロケーション 照会</h2>
+
+  <div class="offset-md-3 col-md-6 mt-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= location.locationname %></h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">[説　明]　　<%= location.description %></li>
+        <li class="list-group-item">[登録者]　　<%= location.author.username %></li>
+      </ul>
+      <div class="card-footer text-muted">
+        <a href="/locations">一覧に戻る</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate') %>
+
+  <h2>商品一覧</h2>
+  <div class="mt-4">
+    <!-- カレントユーザの権限が管理者の場合のみ新規登録 -->
+    <% if (currentUser.authority === '99') { %>
+      <a href="/products/new">新規登録</a>
+    <% } %>
+  </div>
+
+  <form  action="/products/q" method="GET">
+    <div class="d-flex align-items-center mt-2">
+      <label class="form-label me-3" for="q_middleclassname">中分類名</label>
+      <input class="form-control" type="text" name="q_middleclassname" id="q_middleclassname" style="width: 200px;">
+      <label class="form-label me-3 ms-3" for="q_product">商品名</label>
+      <input class="form-control" type="text" name="q_productname" id="q_productname" style="width: 200px;">
+      <button class="btn btn-success ms-4" style="width: 80px;">絞 込</button>
+    </div>
+  </form>
+
+  <table class="table table-bordered mt-3">
+    <thead class="table-primary">
+      <th scope="col" style="width: 80px;"></th>
+      <th scope="col" style="width: 400px;">商品名</th>
+      <th scope="col" style="width: 100px;">在庫単価</th>
+      <th scope="col" style="width: 100px;">大分類</th>
+      <th scope="col" style="width: 180px;">中分類</th>
+      <th scope="col" style="width: 250px;">詳細</th>
+    </thead>
+
+    <% for (let product of products) { %>
+      <tbody>
+        <th scope="row">
+          <!-- カレントユーザの権限が管理者の場合は編集画面/それ以外は照会画面 -->
+          <% if (currentUser.authority === '99') { %>
+            <a class="btn btn-primary" href="/products/<%= product._id %>/edit">詳細</a>
+          <% } else { %>
+            <a class="btn btn-primary" href="/products/<%= product._id %>/show">詳細</a>
+          <% } %>
+        </th>
+        <td><%= product.productname %></td>
+        <td style="text-align: right;"><%= product.inventoryunitprice.toLocaleString() %></td>
+        <td><%= product.largeclassname %></td>
+        <td><%= product.middleclassname %></td>
+        <td><%= product.description %></td>
+      </tbody>
+    <% } %>
+  </table>

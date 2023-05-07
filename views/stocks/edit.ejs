@@ -1,0 +1,85 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+  <h2 class="text-center">在庫の編集</h2>
+  <div class="offset-md-3 col-md-6 mt-4">
+
+    <form action="/stocks/<%= stock._id %>?_method=PUT" method="POST" class="validated-form" novalidate>
+      <div class="mb-3">
+        <label class="form-label" for="locationname">ロケーション</label>
+        <select class="form-select" name="stock[locationname]" id="locationname">
+            <% for (let location of locations) { %>
+              <option value="<%= location.locationname %>" <%= location.locationname == stock.locationname ? 'selected' : '' %>><%= location.locationname %></option>
+            <% } %>
+        </select>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="productname">商品名</label>
+        <% for (let product of products) { %>
+          <% if (product.productname == stock.productname) { %>
+            <input class="form-control " type="text" style="background-color: #fbfbfb;" name="stock[productname]" id="productname" value="<%= stock.productname %>" readonly >
+          <% } %>
+        <% } %>
+        <div class="valid-feedback">
+          OK!
+        </div>
+      </div>
+      <!-- 大分類名 非表示 -->
+      <div class="mb-3">
+        <% for (let product of products) { %>
+          <% if (product.largeclassname == stock.largeclassname) { %>
+            <input class="form-control" type="hidden" style="background-color: #fbfbfb;" name="stock[largeclassname]" id="largeclassname" value="<%= stock.largeclassname %>" readonly>
+            <% break; %>
+          <% } %>
+        <% } %>
+      </div>
+      <!-- 中分類名 非表示 -->
+      <div class="mb-3">
+        <% for (let product of products) { %>
+          <% if (product.middleclassname == stock.middleclassname) { %>
+            <input class="form-control" type="hidden" style="background-color: #fbfbfb;" name="stock[middleclassname]" id="middleclassname" value="<%= stock.middleclassname %>" readonly>
+            <% break; %>
+          <% } %>
+        <% } %>
+      </div>
+      <!-- 在庫単価 非表示 -->
+      <div class="mb-3">
+        <div class="input-group">
+          <% for (let product of products) { %>
+            <% if (product.inventoryunitprice == stock.inventoryunitprice) { %>
+              <input class="form-control" type="hidden" style="background-color: #fbfbfb;" name="stock[inventoryunitprice]" id="inventoryunitprice" value="<%= stock.inventoryunitprice %>" readonly>
+              <% break; %>
+            <% } %>
+          <% } %>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="inventoryquantity">在庫数量</label>
+        <div class="input-group">
+          <span class="input-group-text" id="inventoryunitprice-label">個</span>
+        <input type="text" class="form-control" id="inventoryquantity" placeholder="" aria-label="在庫数量" aria-describedby="inventoryquantity-label" name="stock[inventoryquantity]" value="<%= stock.inventoryquantity %>" required autofocus>
+          <div class="valid-feedback">
+            OK!
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <div class="mb-3">
+          <button class="btn btn-success">更新する</button>
+        </div>
+    </form>
+        <form class="d-inline" action="/stocks/delete/<%= stock._id %>?_method=DELETE" method="POST">
+          <button class="btn btn-danger ms-2">削除する</button>
+        </form>
+      </div>
+
+    <div>
+      <a href="/stocks">一覧に戻る</a>
+    </div>
+
+  </div>
+</div>
