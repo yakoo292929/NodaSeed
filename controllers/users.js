@@ -14,7 +14,7 @@ module.exports.register = async (req, res, next) => {
     req.login(registerdUser, err => {
       if(err) return next(err);
       req.flash('success', 'NodaSeedへようこそ!!');
-      res.redirect('/products');
+      res.redirect('/stocks');
     });
   } catch(e) {
     req.flash('error', e.message);

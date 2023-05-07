@@ -22,8 +22,8 @@
       <th scope="col" style="width: 60px;"></th>
       <th scope="col" style="width: 80px;">倉庫</th>
       <th scope="col" style="width: 300px;">商品名</th>
-      <th scope="col" style="width: 60px;">大分類</th>
-      <th scope="col" style="width: 160px;">中分類</th>
+      <!-- <th scope="col" style="width: 60px;">大分類</th>
+      <th scope="col" style="width: 160px;">中分類</th> -->
       <th scope="col" style="width: 60px; text-align: right;">在庫数量</th>
       <th scope="col" style="width: 60px; text-align: right;">在庫単価</th>
       <th scope="col" style="width: 60px; text-align: right;">在庫金額</th>
@@ -36,8 +36,8 @@
         </th>
         <td><%= stock.locationname %></td>
         <td><%= stock.productname %></td>
-        <td><%= stock.largeclassname %></td>
-        <td><%= stock.middleclassname %></td>
+        <!-- <td><%= stock.largeclassname %></td>
+        <td><%= stock.middleclassname %></td> -->
         <td style="text-align: right;"><%= stock.inventoryquantity.toLocaleString() %></td>
         <td style="text-align: right;"><%= stock.inventoryunitprice.toLocaleString() %></td>
         <td style="text-align: right;"><%= stock.stockprice.toLocaleString() %></td>
